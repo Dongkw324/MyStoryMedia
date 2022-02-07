@@ -53,6 +53,29 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.0.4')
     implementation 'com.google.firebase:firebase-analytics'
 
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
+
+    // Firebase Auth
+    def auth = "21.0.1"
+    implementation "com.google.firebase:firebase-auth:$auth"
+
+    def version = "4.1.0"
+    implementation "com.github.CanHub:Android-Image-Cropper:$version"
+
+    // Paging
+    def paging = "3.1.0"
+    implementation "androidx.paging:paging-runtime-ktx:$paging"
+
+    // Firebase Firestore
+    def fire_store = "23.0.0"
+    implementation "com.google.firebase:firebase-firestore:$fire_store"
+
+    // Firebase Storage KTX
+    def storage_ktx = "20.0.0"
+    implementation "com.google.firebase:firebase-storage-ktx:$storage_ktx"
+
 
     // Navigation Components
     implementation "androidx.navigation:navigation-fragment-ktx:2.4.0-alpha04"
@@ -88,5 +111,18 @@ dependencies {
     // Coroutine Lifecycle Scopes
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+
+    // ViewModel
+    def lifecycle_version = "2.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+
+    // Lifecycle
+    def lifecycle_extensions = "2.2.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
+    def lifecycle_livedata = "2.4.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_livedata"
+    def lifecycle_runtime = "2.3.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_runtime"
 
 }
