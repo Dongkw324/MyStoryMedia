@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MyStoryMedia</string>
+
+    <string name="enter_email">Input Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="login_btn">Login</string>
+    <string name="register_btn">Register</string>
 </resources>
