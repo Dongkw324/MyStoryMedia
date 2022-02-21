@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyStoryMedia" >
+        <activity android:name=".ui.main.activity.MainActivity" />
         <activity
-            android:name=".ui.main.activity.MainActivity"
+            android:name=".ui.auth.activity.LoginActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
