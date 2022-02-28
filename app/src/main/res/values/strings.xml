@@ -7,4 +7,5 @@
     <string name="register_btn">Register</string>
     <string name="reset_pwd_btn">Reset Password</string>
     <string name="enter_name">Enter Name</string>
+    <string name="reset_btn">Reset</string>
 </resources>

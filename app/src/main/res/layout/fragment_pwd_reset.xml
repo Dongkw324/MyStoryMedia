@@ -7,6 +7,32 @@
     android:layout_height="match_parent"
     tools:context=".ui.auth.fragment.pwd.PwdResetFragment">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/reset_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/pwd_reset_guideline"
+        android:layout_margin="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/reset_email_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/reset_pwd_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pwd_reset_guideline"
+        android:layout_margin="10dp"
+        android:text="@string/reset_btn" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/pwd_reset_guideline"
         android:layout_width="wrap_content"
