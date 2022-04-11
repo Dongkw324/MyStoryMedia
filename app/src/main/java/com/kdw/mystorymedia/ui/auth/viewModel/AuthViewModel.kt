@@ -41,4 +41,21 @@ class AuthViewModel @Inject constructor(
         }
     }
 
+    fun resetPwd(email: String, applicationContext: Context) {
+        if(email.isEmpty()) {
+            val error = applicationContext.getString(R.string.input_email_err)
+            _resetState.postValue(Event(Resource.Error(error)))
+        } else {
+            _resetState.postValue(Event(Resource.Loading()))
+            viewModelScope.launch(dispatcher) {
+                val result = authRepository.resetPwd(email)
+                _resetState.postValue(Event(result))
+            }
+        }
+    }
+
+    fun register(email: String, userName: String, password: String, repeatPassword: String) {
+
+    }
+
 }
