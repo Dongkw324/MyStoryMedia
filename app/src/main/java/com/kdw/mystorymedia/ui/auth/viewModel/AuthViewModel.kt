@@ -1,6 +1,7 @@
 package com.kdw.mystorymedia.ui.auth.viewModel
 
 import android.content.Context
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,8 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.AuthResult
 import com.kdw.mystorymedia.R
 import com.kdw.mystorymedia.repository.AuthRepository
+import com.kdw.mystorymedia.util.Constants.MIN_USERNAME_LENGTH
+import com.kdw.mystorymedia.util.Constants.MIN_PASSWORD_LENGTH
 import com.kdw.mystorymedia.util.Event
 import com.kdw.mystorymedia.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher
@@ -54,8 +57,29 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun register(email: String, userName: String, password: String, repeatPassword: String) {
+    fun register(email: String, userName: String, password: String, repeatPassword: String, applicationContext: Context) {
+        val error = if(email.isEmpty() || userName.isEmpty() || password.isEmpty()) {
+            applicationContext.getString(R.string.input_empty)
+        } else if(password != repeatPassword) {
+            applicationContext.getString(R.string.not_eqaul_pwd)
+        } else if(userName.length < MIN_USERNAME_LENGTH) {
+            applicationContext.getString(R.string.userName_too_short)
+        } else if(password.length < MIN_PASSWORD_LENGTH) {
+            applicationContext.getString(R.string.password_too_short)
+        } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            applicationContext.getString(R.string.not_valid_email)
+        } else null
 
+        error?.let {
+            _registerState.postValue(Event(Resource.Error(error)))
+            return
+        }
+
+        _registerState.postValue(Event(Resource.Loading()))
+        viewModelScope.launch(dispatcher) {
+            val result = authRepository.register(userName, email, password)
+            _registerState.postValue(Event(result))
+        }
     }
 
 }

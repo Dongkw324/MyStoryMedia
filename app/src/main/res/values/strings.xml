@@ -11,4 +11,9 @@
 
     <string name="login_error">Login Error</string>
     <string name="input_email_err">Not Input Email</string>
+    <string name="input_empty">Not Input</string>
+    <string name="not_eqaul_pwd">Not equal password</string>
+    <string name="userName_too_short">Too short userName</string>
+    <string name="not_valid_email">Not valid Email</string>
+    <string name="password_too_short">Too short Password</string>
 </resources>
