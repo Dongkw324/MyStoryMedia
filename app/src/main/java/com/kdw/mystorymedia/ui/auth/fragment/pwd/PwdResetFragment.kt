@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.kdw.mystorymedia.R
 import com.kdw.mystorymedia.databinding.FragmentPwdResetBinding
 import com.kdw.mystorymedia.ui.auth.viewModel.AuthViewModel
+import com.kdw.mystorymedia.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
