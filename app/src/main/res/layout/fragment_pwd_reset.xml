@@ -45,6 +45,16 @@
         android:textSize="40sp"
         android:textColor="@color/black" />
 
+    <ProgressBar
+        android:id="@+id/reset_pwd_progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@id/reset_email"
+        android:visibility="gone" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/pwd_reset_guideline"
         android:layout_width="wrap_content"
