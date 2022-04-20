@@ -24,6 +24,8 @@ class PwdResetFragment : Fragment(R.layout.fragment_pwd_reset) {
         super.onViewCreated(view, savedInstanceState)
 
         authViewModel = ViewModelProvider(requireActivity())[AuthViewModel::class.java]
+        binding = FragmentPwdResetBinding.bind(view)
+
         subscribeToObserver()
 
         binding.apply {
