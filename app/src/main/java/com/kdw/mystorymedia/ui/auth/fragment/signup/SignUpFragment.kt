@@ -32,6 +32,16 @@ class SignUpFragment : Fragment(R.layout.fragment_register) {
                     SignUpFragmentDirections.actionSignUpFragmentToLoginFragment()
                 }
             }
+
+            registerBtn.setOnClickListener {
+                authViewModel.register(
+                    emailTxt.text.toString(),
+                    userNameTxt.text.toString(),
+                    pwdTxt.text.toString(),
+                    repeatPwdTxt.text.toString(),
+                    requireContext()
+                )
+            }
         }
     }
 }
