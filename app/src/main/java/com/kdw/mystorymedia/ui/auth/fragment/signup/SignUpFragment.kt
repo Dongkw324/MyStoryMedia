@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.kdw.mystorymedia.R
 import com.kdw.mystorymedia.databinding.FragmentRegisterBinding
 import com.kdw.mystorymedia.ui.auth.viewModel.AuthViewModel
+import com.kdw.mystorymedia.ui.snackBar
+import com.kdw.mystorymedia.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +27,8 @@ class SignUpFragment : Fragment(R.layout.fragment_register) {
 
         binding = FragmentRegisterBinding.bind(view)
         authViewModel = ViewModelProvider(requireActivity())[AuthViewModel::class.java]
+
+        subscribeToObserver()
 
         binding.apply {
             loginTxt.setOnClickListener {
@@ -43,5 +49,19 @@ class SignUpFragment : Fragment(R.layout.fragment_register) {
                 )
             }
         }
+    }
+
+    private fun subscribeToObserver() {
+        authViewModel.registerState.observe(viewLifecycleOwner, EventObserver(
+            onError = {
+                binding.registerProgressBar.isVisible = false
+                snackBar(it)
+            },
+            onLoading = {
+                binding.registerProgressBar.isVisible = true
+            }
+        ){
+            binding.registerProgressBar.isVisible = false
+        })
     }
 }
