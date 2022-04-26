@@ -1,13 +1,19 @@
 package com.kdw.mystorymedia.ui.auth.fragment.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.kdw.mystorymedia.R
 import com.kdw.mystorymedia.databinding.FragmentLoginBinding
 import com.kdw.mystorymedia.ui.auth.viewModel.AuthViewModel
+import com.kdw.mystorymedia.ui.main.activity.MainActivity
+import com.kdw.mystorymedia.ui.snackBar
+import com.kdw.mystorymedia.util.EventObserver
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
@@ -19,6 +25,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         binding = FragmentLoginBinding.bind(view)
         authViewModel = ViewModelProvider(requireActivity())[AuthViewModel::class.java]
+
+        subscribeObserver()
 
         binding.apply {
             resetTextBtn.setOnClickListener {
@@ -43,5 +51,23 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 )
             }
         }
+    }
+
+    private fun subscribeObserver() {
+        authViewModel.loginState.observe(viewLifecycleOwner, EventObserver(
+            onError = {
+                binding.loginProgressBar.isVisible = false
+                snackBar(it)
+            },
+            onLoading = {
+                binding.loginProgressBar.isVisible = true
+            }
+        ){
+            binding.loginProgressBar.isVisible = true
+            Intent(requireContext(), MainActivity::class.java).also {
+                startActivity(it)
+                requireActivity().finish()
+            }
+        })
     }
 }
