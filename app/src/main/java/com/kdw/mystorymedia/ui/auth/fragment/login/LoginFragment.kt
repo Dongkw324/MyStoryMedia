@@ -34,6 +34,14 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     LoginFragmentDirections.actionLoginFragmentToSignUpFragment()
                 }
             }
+
+            loginButton.setOnClickListener {
+                authViewModel.login(
+                    inputId.text.toString(),
+                    inputPassword.text.toString(),
+                    requireContext()
+                )
+            }
         }
     }
 }
